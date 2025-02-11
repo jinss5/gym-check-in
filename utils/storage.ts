@@ -20,3 +20,13 @@ export const getCheckIns = async () => {
     return [];
   }
 };
+
+// Removes all check in data
+export const clearCheckIns = async () => {
+  try {
+    await AsyncStorage.removeItem('checkIns');
+    console.log('Data removed successfully!');
+  } catch (error) {
+    console.error('Error removing data:', error);
+  }
+};
