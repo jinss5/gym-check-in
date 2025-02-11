@@ -1,0 +1,11 @@
+node_modules/
+assets/
+
+*.json
+
+build
+android
+ios
+.expo
+expo-env.d.ts
+tsconfig.json

@@ -26,13 +26,13 @@ export default function CalendarView() {
   }, []);
 
   return (
-      <Calendar
-        markedDates={markedDates}
-        theme={{
-          selectedDayBackgroundColor: 'green',
-          //todayTextColor: 'red',
-          dotColor: 'green',
-        }}
-      />
+    <Calendar
+      markedDates={markedDates}
+      theme={{
+        selectedDayBackgroundColor: 'green',
+        //todayTextColor: 'red',
+        dotColor: 'green',
+      }}
+    />
   );
 }
