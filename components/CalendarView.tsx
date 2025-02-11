@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { getCheckIns } from '../utils/storage';
+import { CheckIns } from '../types/checkins';
 
 interface MarkedDates {
   [date: string]: {
@@ -14,9 +15,11 @@ export default function CalendarView() {
 
   useEffect(() => {
     const loadCheckIns = async () => {
-      const checkIns: string[] = await getCheckIns();
+      const checkIns: CheckIns = await getCheckIns();
       const marks: MarkedDates = {};
-      checkIns.forEach((date: string) => {
+      console.log(checkIns);
+
+      Object.keys(checkIns).forEach((date: string) => {
         marks[date] = { marked: true, dotColor: 'green' };
       });
       setMarkedDates(marks);
