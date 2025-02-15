@@ -11,7 +11,7 @@ interface SelectedDates {
   };
 }
 
-export default function CalendarView() {
+const CalendarView = () => {
   const [markedDates, setMarkedDates] = useState<SelectedDates>({});
 
   useEffect(() => {
@@ -33,4 +33,6 @@ export default function CalendarView() {
   }, []);
 
   return <Calendar markedDates={markedDates} />;
-}
+};
+
+export default CalendarView;

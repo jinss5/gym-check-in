@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { CheckIns } from '../types/checkins';
 import { getCheckIns } from '../utils/storage';
 
