@@ -16,10 +16,6 @@ const getCurrentStreak = (dates: CheckIns): number => {
   const yesterdayDate = formatDate(yesterday);
   const lastDayDate = sortedDates[sortedDates.length - 1];
 
-  console.log('today', todayDate);
-  console.log('yesterday', yesterdayDate);
-  console.log('lastDay', lastDayDate);
-
   if (lastDayDate !== todayDate && lastDayDate !== yesterdayDate) {
     return 0;
   }
