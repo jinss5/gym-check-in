@@ -20,7 +20,7 @@ export const getCheckIns = async (): Promise<CheckIns> => {
     const data = await AsyncStorage.getItem('checkIns');
     return data ? JSON.parse(data) : {};
   } catch (error) {
-    console.error('Error fetching check-ins:', error);
+    console.error('Error fetching check-ins from storage:', error);
     return {};
   }
 };
