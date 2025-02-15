@@ -1,10 +1,11 @@
 import { Button, Alert } from 'react-native';
 import { saveCheckIn } from '../utils/storage';
+import { formatDate } from '../utils/format';
 
 const CheckInButton = () => {
   const handleCheckIn = async () => {
     const currentDate = new Date();
-    const date = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+    const date = formatDate(currentDate);
 
     await saveCheckIn(date);
     Alert.alert('Checked In!');
