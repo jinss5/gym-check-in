@@ -11,7 +11,7 @@ interface SelectedDates {
 }
 
 const CalendarView = () => {
-  const { checkIns } = useCheckIn();
+  const { checkIns, saveCheckIn } = useCheckIn();
   const [markedDates, setMarkedDates] = useState<SelectedDates>({});
 
   useEffect(() => {
@@ -28,7 +28,11 @@ const CalendarView = () => {
     setMarkedDates(marks);
   }, [checkIns]);
 
-  return <Calendar markedDates={markedDates} />;
+  const handleDayPress = (date: { dateString: string }) => {
+    saveCheckIn(date.dateString);
+  };
+
+  return <Calendar markedDates={markedDates} onDayPress={handleDayPress} />;
 };
 
 export default CalendarView;
