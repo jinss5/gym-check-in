@@ -1,5 +1,5 @@
 import { CheckIns } from '../types/checkins';
-import { formatDate } from '../utils/format';
+import { formatYearMonthDate } from '../utils/format';
 
 export const getCurrentStreak = (dates: CheckIns): number => {
   const sortedDates = Object.keys(dates).sort();
@@ -10,8 +10,8 @@ export const getCurrentStreak = (dates: CheckIns): number => {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const todayDate = formatDate(today);
-  const yesterdayDate = formatDate(yesterday);
+  const todayDate = formatYearMonthDate(today);
+  const yesterdayDate = formatYearMonthDate(yesterday);
   const lastDayDate = sortedDates[sortedDates.length - 1];
 
   if (lastDayDate !== todayDate && lastDayDate !== yesterdayDate) {

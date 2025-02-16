@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import {
-  TotalCheckIns,
+  CheckInsCountTotal,
+  CheckInsCountByMonth,
   CurrentStreak,
   LongestStreak,
 } from '../components/CheckInStats';
@@ -8,7 +9,8 @@ import {
 const StatsScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <Text>Check-In Stats</Text>
-    <TotalCheckIns />
+    <CheckInsCountTotal />
+    <CheckInsCountByMonth />
     <CurrentStreak />
     <LongestStreak />
   </View>

@@ -2,17 +2,35 @@ import { View, Text } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useCheckIn } from '../context/CheckInContext';
 import { getCurrentStreak, getLongestStreak } from '../utils/streaks';
+import { formatYearMonth } from '../utils/format';
 
-export const TotalCheckIns = () => {
+export const CheckInsCountTotal = () => {
   const { checkIns } = useCheckIn();
   const totalCheckIns = Object.keys(checkIns).length;
 
   return (
-    <Text>
-      {totalCheckIns > 0
-        ? `Great job! You've been to the gym ${totalCheckIns} times.`
-        : "You haven't checked in yet. Time to hit the gym!"}
-    </Text>
+    <View>
+      <Text>{`🏆 Total Gym Check-ins: ${totalCheckIns}`}</Text>
+    </View>
+  );
+};
+
+export const CheckInsCountByMonth = () => {
+  const { checkIns } = useCheckIn();
+  const currentMonth = formatYearMonth(new Date());
+
+  const checkInsThisMonth = Object.keys(checkIns).filter((date) =>
+    date.startsWith(currentMonth),
+  ).length;
+
+  return (
+    <View>
+      <Text>
+        {checkInsThisMonth > 0
+          ? `Great job! You've been to the gym ${checkInsThisMonth} times this month.`
+          : "You haven't checked in this month. Time to hit the gym!"}
+      </Text>
+    </View>
   );
 };
 
