@@ -5,6 +5,7 @@ import { CheckIns, createNewCheckInsType } from '../types/checkins';
 interface CheckInContextType {
   checkIns: CheckIns;
   saveCheckIn: (date: string) => Promise<void>;
+  removeCheckIn: (date: string) => Promise<void>;
 }
 
 const CheckInContext = createContext<CheckInContextType | undefined>(undefined);
@@ -42,8 +43,22 @@ export const CheckInProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const removeCheckIn = async (date: string): Promise<void> => {
+    try {
+      if (checkIns[date]) {
+        const updatedCheckIns = { ...checkIns };
+        delete updatedCheckIns[date];
+
+        setCheckIns(updatedCheckIns);
+        await AsyncStorage.setItem('checkIns', JSON.stringify(updatedCheckIns));
+      }
+    } catch (error) {
+      console.error('Error removing check-in:', error);
+    }
+  };
+
   return (
-    <CheckInContext.Provider value={{ checkIns, saveCheckIn }}>
+    <CheckInContext.Provider value={{ checkIns, saveCheckIn, removeCheckIn }}>
       {children}
     </CheckInContext.Provider>
   );
