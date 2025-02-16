@@ -3,6 +3,19 @@ import { useState, useEffect } from 'react';
 import { useCheckIn } from '../context/CheckInContext';
 import { getCurrentStreak, getLongestStreak } from '../utils/streaks';
 
+export const TotalCheckIns = () => {
+  const { checkIns } = useCheckIn();
+  const totalCheckIns = Object.keys(checkIns).length;
+
+  return (
+    <Text>
+      {totalCheckIns > 0
+        ? `Great job! You've been to the gym ${totalCheckIns} times.`
+        : "You haven't checked in yet. Time to hit the gym!"}
+    </Text>
+  );
+};
+
 export const CurrentStreak = () => {
   const { checkIns } = useCheckIn();
   const [currentStreak, setCurrentStreak] = useState(0);
@@ -34,9 +47,3 @@ export const LongestStreak = () => {
     </View>
   );
 };
-
-export const CheckInStats = () => (
-  <View>
-    <Text>Statistics Component</Text>
-  </View>
-);
