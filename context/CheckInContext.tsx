@@ -1,9 +1,10 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CheckIns } from '../types/checkins';
+import { CheckIns, createNewCheckInsType } from '../types/checkins';
 
 interface CheckInContextType {
   checkIns: CheckIns;
+  saveCheckIn: (date: string) => Promise<void>;
 }
 
 const CheckInContext = createContext<CheckInContextType | undefined>(undefined);
@@ -22,14 +23,27 @@ export const CheckInProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       } catch (error) {
         console.error('Error fetching check-ins from storage:', error);
+        setCheckIns({});
       }
     };
 
     loadCheckIns();
   }, []);
 
+  const saveCheckIn = async (date: string): Promise<void> => {
+    try {
+      const newCheckIn = createNewCheckInsType(date);
+      const updatedCheckIns = { ...(checkIns || {}), ...newCheckIn };
+
+      setCheckIns(updatedCheckIns);
+      await AsyncStorage.setItem('checkIns', JSON.stringify(updatedCheckIns));
+    } catch (error) {
+      console.error('Error saving check-in:', error);
+    }
+  };
+
   return (
-    <CheckInContext.Provider value={{ checkIns }}>
+    <CheckInContext.Provider value={{ checkIns, saveCheckIn }}>
       {children}
     </CheckInContext.Provider>
   );

@@ -10,3 +10,12 @@ export interface CheckIn {
 export type CheckIns = {
   [date: string]: CheckIn;
 };
+
+export const createNewCheckInsType = (date: string): CheckIns => {
+  return {
+    [date]: {
+      bodyPart: {},
+      timestamp: Date.now(),
+    },
+  };
+};

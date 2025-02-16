@@ -1,8 +1,10 @@
 import { Button, Alert } from 'react-native';
-import { saveCheckIn } from '../utils/storage';
+import { useCheckIn } from '../context/CheckInContext';
 import { formatDate } from '../utils/format';
 
 const CheckInButton = () => {
+  const { saveCheckIn } = useCheckIn();
+
   const handleCheckIn = async () => {
     const currentDate = new Date();
     const date = formatDate(currentDate);
