@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-native-calendars';
+import Toast from 'react-native-toast-message';
 import { useCheckIn } from '../context/CheckInContext';
 
 interface SelectedDates {
@@ -34,7 +35,17 @@ const CalendarView = () => {
     if (checkIns[selectedDate]) {
       removeCheckIn(selectedDate);
     } else {
-      saveCheckIn(selectedDate);
+      if (new Date(selectedDate) <= new Date()) {
+        saveCheckIn(selectedDate);
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: '🚫 Invalid Check-in',
+          text2: "You can't check in for a future workout.",
+          topOffset: 100,
+          visibilityTime: 2000,
+        });
+      }
     }
   };
 
