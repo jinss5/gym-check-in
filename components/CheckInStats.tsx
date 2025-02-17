@@ -1,17 +1,31 @@
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useCheckIn } from '../context/CheckInContext';
 import { getCurrentStreak, getLongestStreak } from '../utils/streaks';
 import { formatYearMonth } from '../utils/format';
+
+const StatCard = ({
+  title,
+  value,
+  emoji,
+}: {
+  title: string;
+  value: string | number;
+  emoji?: string;
+}) => (
+  <View style={styles.card}>
+    <Text style={styles.emoji}>{emoji}</Text>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.value}>{value}</Text>
+  </View>
+);
 
 export const CheckInsCountTotal = () => {
   const { checkIns } = useCheckIn();
   const totalCheckIns = Object.keys(checkIns).length;
 
   return (
-    <View>
-      <Text>{`🏆 Total Gym Check-ins: ${totalCheckIns}`}</Text>
-    </View>
+    <StatCard title="Total Gym Check-ins" value={totalCheckIns} emoji="🏆" />
   );
 };
 
@@ -24,13 +38,11 @@ export const CheckInsCountByMonth = () => {
   ).length;
 
   return (
-    <View>
-      <Text>
-        {checkInsThisMonth > 0
-          ? `Great job! You've been to the gym ${checkInsThisMonth} times this month.`
-          : "You haven't checked in this month. Time to hit the gym!"}
-      </Text>
-    </View>
+    <StatCard
+      title="This Month's Check-ins"
+      value={checkInsThisMonth}
+      emoji="📅"
+    />
   );
 };
 
@@ -43,11 +55,7 @@ export const CurrentStreak = () => {
     setCurrentStreak(streaks);
   }, [checkIns]);
 
-  return (
-    <View>
-      <Text>Current Streak: {currentStreak}</Text>
-    </View>
-  );
+  return <StatCard title="Current Streak" value={currentStreak} emoji="🔥" />;
 };
 
 export const LongestStreak = () => {
@@ -59,9 +67,36 @@ export const LongestStreak = () => {
     setLongestStreak(streaks);
   }, [checkIns]);
 
-  return (
-    <View>
-      <Text>Longest Streak: {longestStreak}</Text>
-    </View>
-  );
+  return <StatCard title="Longest Streak" value={longestStreak} emoji="🏅" />;
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginVertical: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3, // Android shadow
+    width: '90%',
+  },
+  emoji: {
+    fontSize: 24,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginTop: 4,
+  },
+  value: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#007AFF',
+    marginTop: 4,
+  },
+});
