@@ -2,6 +2,24 @@ import { Pressable, Text, Alert, StyleSheet } from 'react-native';
 import { useCheckIn } from '../context/CheckInContext';
 import { formatYearMonthDate } from '../utils/format';
 
+const CheckInButton = () => {
+  const { saveCheckIn } = useCheckIn();
+
+  const handleCheckIn = async () => {
+    const currentDate = new Date();
+    const date = formatYearMonthDate(currentDate);
+
+    await saveCheckIn(date);
+    Alert.alert('Checked In!');
+  };
+
+  return (
+    <Pressable style={styles.button} onPress={handleCheckIn}>
+      <Text style={styles.buttonText}>Check In</Text>
+    </Pressable>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#007AFF', // A modern blue shade
@@ -23,23 +41,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-
-const CheckInButton = () => {
-  const { saveCheckIn } = useCheckIn();
-
-  const handleCheckIn = async () => {
-    const currentDate = new Date();
-    const date = formatYearMonthDate(currentDate);
-
-    await saveCheckIn(date);
-    Alert.alert('Checked In!');
-  };
-
-  return (
-    <Pressable style={styles.button} onPress={handleCheckIn}>
-      <Text style={styles.buttonText}>Check In</Text>
-    </Pressable>
-  );
-};
 
 export default CheckInButton;
