@@ -8,7 +8,6 @@ import {
 
 const StatsScreen = () => (
   <View style={styles.container}>
-    <Text style={styles.heading}>Check-In Stats</Text>
     <CheckInsCountTotal />
     <CheckInsCountByMonth />
     <CurrentStreak />
@@ -23,12 +22,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F8F9FA', // Light background for a clean look
     paddingTop: 20,
-  },
-  heading: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#333',
-    marginBottom: 16,
   },
 });
 
