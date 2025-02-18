@@ -49,7 +49,15 @@ const CalendarView = () => {
     }
   };
 
-  return <Calendar markedDates={markedDates} onDayPress={handleDayPress} />;
+  return (
+    <Calendar
+      markedDates={markedDates}
+      onDayPress={handleDayPress}
+      style={{
+        transform: [{ scale: 1.2 }],
+      }}
+    />
+  );
 };
 
 export default CalendarView;
