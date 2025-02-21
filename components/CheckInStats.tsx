@@ -24,9 +24,7 @@ export const CheckInsCountTotal = () => {
   const { checkIns } = useCheckIn();
   const totalCheckIns = Object.keys(checkIns).length;
 
-  return (
-    <StatCard title="Total Gym Check-ins" value={totalCheckIns} emoji="🏆" />
-  );
+  return <StatCard title="Total Check-Ins" value={totalCheckIns} emoji="🏆" />;
 };
 
 export const CheckInsCountByMonth = () => {
@@ -39,7 +37,7 @@ export const CheckInsCountByMonth = () => {
 
   return (
     <StatCard
-      title="This Month's Check-ins"
+      title="This Month's Check-Ins"
       value={checkInsThisMonth}
       emoji="📅"
     />
