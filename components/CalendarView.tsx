@@ -41,7 +41,7 @@ const CalendarView = () => {
       } else {
         Toast.show({
           type: 'error',
-          text1: '🚫 Invalid Check-in',
+          text1: '🚫 Invalid Check-In',
           text2: "You can't check in for a future workout.",
           topOffset: 100,
           visibilityTime: 2000,
