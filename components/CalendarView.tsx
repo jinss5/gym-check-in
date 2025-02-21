@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-native-calendars';
 import Toast from 'react-native-toast-message';
 import { useCheckIn } from '../context/CheckInContext';
+import { formatYearMonthDate } from '../utils/format';
 
 interface SelectedDates {
   [date: string]: {
@@ -35,7 +36,7 @@ const CalendarView = () => {
     if (checkIns[selectedDate]) {
       removeCheckIn(selectedDate);
     } else {
-      if (new Date(selectedDate) <= new Date()) {
+      if (selectedDate <= formatYearMonthDate(new Date())) {
         saveCheckIn(selectedDate);
       } else {
         Toast.show({
