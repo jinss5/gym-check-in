@@ -9,13 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jinss5.gymcheckin",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID",
+        "com.google.android.gms.permission.AD_ID"
+      ],
+      "package": "com.jinss5.gymcheckin"
     },
     "web": {
       "bundler": "metro",
@@ -32,10 +41,23 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-tracking-transparency"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7780174f-920a-40ab-92b0-732e80edeca2"
+      }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1898630413621780~9286048839",
+    "ios_app_id": "ca-app-pub-1898630413621780~2492870779"
   }
 }
